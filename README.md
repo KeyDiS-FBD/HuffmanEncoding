@@ -1,3 +1,3 @@
-#Huffman Encoding Algorithm
+# Huffman Encoding Algorithm
 
-##Kabiden D.
+## Kabiden D.
