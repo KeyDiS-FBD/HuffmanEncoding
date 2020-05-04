@@ -8,19 +8,28 @@ class Node(object):
          
         self.ch = ch
         self.freq = freq
+
     def addLeft(self, left):
         self.left = left
+
     def addRight(self, right):
         self.right = right
+
+    def getFreq(self):
+        return self.freq
+    def getCh(self):
+        return self.ch
+
     def printData(self):
         print(self.ch, self.freq)
 
-def search_min(temp_dict, alphabet, min_freq):
-    for ch, freq in temp_dict.items():
+def search_min(dict_obj, min_freq):
+    for ch, node in dict_obj.items():
+        freq = node.getFreq()
         if(freq < min_freq):
             key = ch
             min_freq = freq
-    temp_dict.pop(key)
+    dict_obj.pop(key)
     return key, min_freq
 
 
@@ -56,10 +65,13 @@ max_freq = len(text)
 #    if(cntr):
 #        list_of_ch.insert(index, cntr)
 print(dict_of_ch)
+dict_obj = dictChInDictObject(dict_of_ch)
+
 
 for i in range(unique_ch_cntr):
-    key, freq = search_min(temp_dict, alphabet, max_freq)
+    key, freq = search_min(dict_obj, max_freq)
     print(key, freq)
+print(dict_obj)
 #for index in range(26):
 #    val = list_of_ch[index]
 #    if(val):
