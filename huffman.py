@@ -102,6 +102,12 @@ def printEncodedText(text, encode_dict):
     print("Encoded text:", encoded_text)
 
 
+def printChFreqCode(dict_of_ch, encode_dict):
+    for ch, freq in dict_of_ch.items():
+        code = encode_dict[ch]
+        print("Symbol:", ch, "Frequency:", freq, "Code:", code)
+
+
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 text = input()
 code = ''
@@ -119,7 +125,6 @@ temp_dict = dict_of_ch.copy()
 max_freq = len(text)
 
 
-print(dict_of_ch)
 dict_obj = dictChInDictObject(dict_of_ch)
 
 temp_cntr = unique_ch_cntr - 1
@@ -144,5 +149,5 @@ else:
     treeTraversal(root, code, encode_dict)
 # print("Tree Print")
 # printTreeCode(root)
-print(encode_dict)
+printChFreqCode(dict_of_ch, encode_dict)
 printEncodedText(text, encode_dict)
