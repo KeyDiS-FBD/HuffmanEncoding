@@ -40,6 +40,8 @@ class Node(object):
     def printData(self):
         print(self.ch, self.freq)
 
+# Seachin in dictionary of nodes with frequency
+
 
 def search_min(dict_obj, min_freq):
     min_node = None
@@ -52,6 +54,8 @@ def search_min(dict_obj, min_freq):
     dict_obj.pop(key)
     return min_node, key, min_freq
 
+# Create a new dictionary of objects from source dictionary
+
 
 def dictChInDictObject(dict_of_ch):
     dict_obj = {}
@@ -61,12 +65,16 @@ def dictChInDictObject(dict_of_ch):
         dict_obj[ch] = node
     return dict_obj
 
+# no comments
+
 
 def mergeNode(left, right):
     node = Node()
     node.addLeft(left)
     node.addRight(right)
     return node
+
+# Tree traverse with creating code of this symbol
 
 
 def treeTraversal(root, code, encode_dict):
@@ -90,7 +98,7 @@ def checkChild(root):
 def printTreeCode(root):
     if(root == None):
         return
-    print(root.getCh(), root.getCode())
+    print(root.getCh(), '-', root.getCode())
     printTreeCode(root.getLeft())
     printTreeCode(root.getRight())
 
@@ -113,6 +121,8 @@ text = input()
 code = ''
 dict_of_ch = {}
 unique_ch_cntr = 0
+max_freq = len(text)
+
 for ch in alphabet:
     cntr = text.count(ch)
     if(cntr):
@@ -121,15 +131,9 @@ for ch in alphabet:
 if(unique_ch_cntr == 0):
     print("Empty text")
     exit()
-temp_dict = dict_of_ch.copy()
-max_freq = len(text)
-
 
 dict_obj = dictChInDictObject(dict_of_ch)
-
-temp_cntr = unique_ch_cntr - 1
-
-for i in range(temp_cntr):
+for i in range(unique_ch_cntr - 1):
     ch = ""
     freq = 0
     min_node_left, left_key, left_freq = search_min(dict_obj, max_freq)
