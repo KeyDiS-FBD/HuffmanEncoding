@@ -115,22 +115,53 @@ def printChFreqCode(dict_of_ch, encode_dict):
         code = encode_dict[ch]
         print("Symbol:", ch, "Frequency:", freq, "Code:", code)
 
+def checkText(text):
+    if(text[0] == '.'):
+        print("Empty text")
+        exit()
+    if(text[-1] != '.'):
+        print("Not found End of Input\nIf you wanna encode this type 'encode'")
+        print("If you wanna add text type 'input'")
+        command = input()
+        if(command == 'input'):
+            text = text + input()
+            text = checkText(text)
+        elif(command == 'encode'):
+            text = text + '.'
+        else:
+            print("Not found End of Input and the correct command is not specified")
+            exit()
+    return text
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 text = input()
+text = checkText(text)
 code = ''
 dict_of_ch = {}
 unique_ch_cntr = 0
 max_freq = len(text)
+
+#check len(text) include End of Input
+#If len of characters > 4000 stop
+
+if(len(text) > 4001):
+    print("Too many characters\nIf encode this type 'continue'")
+    print("Else type 'end'")
+    command = input()
+    if(command == 'end'):
+        exit()
+    elif(command == 'continue'):
+        text = text[:4000] + '.'
+
+#delete End of Input for correct working
+text = text[:len(text) - 1]
 
 for ch in alphabet:
     cntr = text.count(ch)
     if(cntr):
         dict_of_ch[ch] = cntr
         unique_ch_cntr += 1
-if(unique_ch_cntr == 0):
-    print("Empty text")
-    exit()
+
 
 dict_obj = dictChInDictObject(dict_of_ch)
 for i in range(unique_ch_cntr - 1):
